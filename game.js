@@ -1,6 +1,41 @@
 gamePattern = [];
-var colorOfThePushedButton;
+let colorOfThePushedButton;
 userClickedPattern = [];
+
+
+
+
+var started = false;
+
+//2. Create a new variable called level and start at level 0.
+var level = 0;
+
+//1. Use jQuery to detect when a keyboard key has been pressed, when that happens for the first time, call nextSequence().
+$(document).keypress(function() {
+  if (!started) {
+
+    //3. The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
+    $("#level-title").text("Level " + level);
+    startGame();
+    started = true;
+  }
+});
+
+
+
+
+let colorOfTheActiveButton;
+function startGame(){
+  colorOfTheActiveButton = randomColor();
+  $("#" + colorOfTheActiveButton).fadeOut(200).fadeIn(200);
+  console.log(colorOfTheActiveButton);
+}
+
+
+function nextSequence() {
+
+
+}
 
 function gameColors() {
   gamePattern.push(randomColor());
@@ -26,15 +61,13 @@ function playAudio(pushedButton, activeButton) {
   }
   obj.play();
 }
+
 // $("#"+randomColor()).hide();
-let colorOfTheActiveButton = randomColor();
-$("#" + colorOfTheActiveButton).fadeOut(200).fadeIn(200);
-console.log(colorOfTheActiveButton);
 
 
-setTimeout(function() {
-  $("h1").text("penis");
-}, 1000);
+// setTimeout(function() {
+//   $("h1").text("penis");
+// }, 1000);
 
 
 
@@ -56,9 +89,16 @@ function animatePress(currentColour) {
 }
 
 
-// 3. Use jQuery to add this pressed class to the button that gets clicked inside animatePress().
+// 1. Use jQuery to detect when a keyboard key has been pressed, when that happens for the first time, call nextSequence().
 //
-// 4. use Google/Stackoverflow to figure out how you can use Javascript to remove the pressed class after a 100 milliseconds.
+// You'll need a way to keep track of whether if the game has started or not, so you only call nextSequence() on the first keypress.
 //
-// Once complete, you will get this effect when you click on any button.
+// 2. Create a new variable called level and start at level 0.
 //
+// 3. The h1 title starts out saying "Press A Key to Start", when the game has started, change this to say "Level 0".
+//
+// 4. Inside nextSequence(), increase the level by 1 every time nextSequence() is called.
+//
+// 5. Inside nextSequence(), update the h1 with this change in the value of level.
+//
+// All going well, this is what you should see when you refresh the website:
